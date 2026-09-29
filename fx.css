@@ -1,30 +1,10 @@
-/* fx.css — premium interaction layer (kookyweb). Set --fx-bg / --fx-ink / --fx-accent per site. */
-
-/* preloader */
-.loader { position: fixed; inset: 0; z-index: 200; background: var(--fx-bg); color: var(--fx-ink); display: flex; flex-direction: column; justify-content: flex-end; padding: clamp(20px, 5vw, 84px); clip-path: inset(0% 0% 0% 0%); }
-.loader__brand { font-family: var(--fx-display, serif); font-size: clamp(3.4rem, 13vw, 10.5rem); line-height: 0.9; letter-spacing: 0.04em; }
-.loader__row { display: flex; justify-content: space-between; align-items: baseline; margin-top: 22px; opacity: 0.7; }
-.loader__num { font-variant-numeric: tabular-nums; font-size: 13px; }
-.loader__bar { height: 1px; margin-top: 16px; background: color-mix(in srgb, var(--fx-ink) 18%, transparent); overflow: hidden; }
-.loader__bar i { display: block; height: 100%; background: var(--fx-accent); transform: scaleX(0); transform-origin: 0 50%; }
+/* fx.css — structural bits only; every site styles its own loader, cursor and progress */
 html.is-loading, html.is-loading body { overflow: hidden; }
-
-/* cursor */
 html.has-cursor, html.has-cursor a, html.has-cursor button { cursor: none; }
-.cur-dot, .cur-ring { position: fixed; left: 0; top: 0; z-index: 300; pointer-events: none; border-radius: 50%; }
-.cur-dot { width: 6px; height: 6px; margin: -3px 0 0 -3px; background: var(--fx-accent); }
-.cur-ring { width: 38px; height: 38px; margin: -19px 0 0 -19px; border: 1px solid color-mix(in srgb, var(--fx-accent) 70%, transparent); display: grid; place-items: center; transition: width 0.45s cubic-bezier(0.16, 1, 0.3, 1), height 0.45s cubic-bezier(0.16, 1, 0.3, 1), margin 0.45s cubic-bezier(0.16, 1, 0.3, 1), background 0.3s, border-color 0.3s; }
-.cur-ring span { font-family: var(--fx-mono, monospace); font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--fx-bg); opacity: 0; transition: opacity 0.25s; }
-.cur-ring.is-hover { width: 64px; height: 64px; margin: -32px 0 0 -32px; background: color-mix(in srgb, var(--fx-accent) 16%, transparent); }
-.cur-ring.has-label { width: 92px; height: 92px; margin: -46px 0 0 -46px; background: var(--fx-accent); border-color: var(--fx-accent); }
-.cur-ring.has-label span { opacity: 1; }
-.cur-ring.is-down { width: 28px; height: 28px; margin: -14px 0 0 -14px; }
-
-/* split text */
+.cur, .cur-trail { position: fixed; left: 0; top: 0; z-index: 300; pointer-events: none; }
+.cur span { position: absolute; left: 50%; top: 50%; translate: -50% -50%; white-space: nowrap; opacity: 0; transition: opacity 0.25s; }
+.cur.has-label span { opacity: 1; }
+.prog { position: fixed; z-index: 120; pointer-events: none; }
 .word { display: inline-block; white-space: nowrap; }
 .ch { display: inline-block; will-change: transform; backface-visibility: hidden; }
-
-/* progress */
-.fx-progress { position: fixed; left: 0; top: 0; right: 0; height: 2px; z-index: 120; background: var(--fx-accent); transform: scaleX(0); transform-origin: 0 50%; pointer-events: none; }
-
 @media (prefers-reduced-motion: reduce) { .loader { display: none; } }

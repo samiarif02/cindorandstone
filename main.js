@@ -16,8 +16,8 @@
     lenis.stop();
   }
 
-  FX.cursor();
-  FX.progress();
+  FX.cursor("ember");
+  FX.progress("line-h");
   FX.magnetic("[data-magnetic]");
 
   /* word-split the intro line */
@@ -83,8 +83,16 @@
   });
 
   /* ---------- intro ---------- */
-  var heroChars = FX.charRise(document.getElementById("heroTitle"), { trigger: false, stagger: 0.03, duration: 1.4 });
-  FX.preloader(glReady).then(function () {
+  var heroChars = FX.charRise(document.getElementById("heroTitle"), { trigger: false, style: "blur", stagger: 0.14, duration: 1.8 });
+  var arc = document.getElementById("lcArc");
+  FX.preloader(glReady, {
+    format: function (p) { return Math.round(22 + p * 63); },
+    onProgress: function (p) { arc.style.strokeDashoffset = String(1 - p); },
+    exit: function (tl, el, resolve) {
+      // the loader dissolves like steam into the room
+      tl.add(resolve).to(el, { opacity: 0, filter: "blur(26px)", scale: 1.12, duration: 1.4, ease: "power2.inOut" });
+    }
+  }).then(function () {
     document.documentElement.classList.remove("is-loading");
     lenis && lenis.start();
     document.getElementById("nav").classList.add("is-in");
@@ -97,7 +105,8 @@
   /* nav flips dark over the bone menu */
   ScrollTrigger.create({
     trigger: "#menu", start: "top 40px", end: "bottom 40px",
-    toggleClass: { targets: "#nav", className: "is-light" }
+    toggleClass: { targets: "#nav", className: "is-light" },
+    onToggle: function (self) { document.documentElement.classList.toggle("on-light", self.isActive); }
   });
 
   /* intro line lights word by word */
@@ -110,9 +119,16 @@
     }
   });
 
-  gsap.utils.toArray("[data-split]").forEach(function (h) { FX.charRise(h, { start: "top 86%" }); });
-  FX.charRise(document.getElementById("footWord"), { start: "top 92%", stagger: 0.08, duration: 1.4 });
-  FX.scrambleOnScroll("[data-scramble]");
+  gsap.utils.toArray("[data-split]").forEach(function (h) { FX.charRise(h, { start: "top 86%", style: "blur" }); });
+  FX.charRise(document.getElementById("footBreath"), { start: "top 88%", style: "blur", stagger: 0.12 });
+  gsap.utils.toArray("[data-scramble]").forEach(function (el) {
+    gsap.from(el, { opacity: 0, letterSpacing: "0.6em", duration: 1.6, ease: "power3.out", scrollTrigger: { trigger: el, start: "top 90%" } });
+  });
+
+  /* footer: the cold-to-hot line warms up, an ember travels along it */
+  gsap.fromTo("#thermoLine", { scaleX: 0 }, { scaleX: 1, ease: "none", scrollTrigger: { trigger: ".footer__thermo", start: "top bottom", end: "bottom 97%", scrub: 0.6 } });
+  gsap.fromTo("#thermoLine b", { left: "0%" }, { left: "100%", ease: "none", scrollTrigger: { trigger: ".footer__thermo", start: "top bottom", end: "bottom 97%", scrub: 0.8 } });
+  gsap.from(".footer__hours div", { opacity: 0, y: 20, filter: "blur(8px)", stagger: 0.12, duration: 1.2, ease: "power2.out", scrollTrigger: { trigger: ".footer__hours", start: "top 88%" } });
   FX.clipReveals("[data-clip]");
 
   gsap.utils.toArray("[data-reveal]").forEach(function (el) {
