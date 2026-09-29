@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en" class="is-loading">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CINDER &amp; STONE — Urban Bathhouse</title>
+  <meta name="description" content="Cinder &amp; Stone is an urban bathhouse built around one ritual: heat, cold, steam, rest." />
+  <meta name="theme-color" content="#171310" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="CINDER &amp; STONE — Heat. Cold. Steam. Rest." />
+  <meta property="og:description" content="An urban bathhouse built around one ritual: heat, cold, steam, rest." />
+  <meta property="og:image" content="https://images.unsplash.com/photo-1583417267826-aebc4d1542e1?q=80&w=1200&auto=format&fit=crop" />
+  <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Marcellus&family=Inter:wght@300;400;500&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="fx.css" />
+  <link rel="stylesheet" href="styles.css" />
+  <script type="importmap">
+  { "imports": {
+      "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+      "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
+  } }
+  </script>
+</head>
+<body>
+  <!-- PRELOADER -->
+  <div class="loader" id="loader" aria-hidden="true">
+    <div class="loader__brand" data-loader-fade>CINDER <em>&amp;</em> STONE</div>
+    <div class="loader__row" data-loader-fade><span class="mono">Heating the stones</span><span class="mono loader__num" data-num>000</span></div>
+    <div class="loader__bar"><i data-bar></i></div>
+  </div>
+
+  <canvas id="gl" aria-hidden="true"></canvas>
+
+  <header class="nav" id="nav">
+    <a class="nav__brand" href="#top">CINDER <em>&amp;</em> STONE</a>
+    <nav class="nav__links mono">
+      <a href="#ritual">The Ritual</a>
+      <a href="#menu">Bathing Menu</a>
+      <a href="#visit">Visit</a>
+    </nav>
+    <a class="nav__cta mono" href="#visit" data-magnetic>Book a session</a>
+  </header>
+
+  <main id="top">
+
+    <!-- HERO: 3D cairn + steam + embers render in #gl -->
+    <section class="hero">
+      <div class="hero__copy">
+        <p class="hero__eyebrow mono" data-hero>An urban bathhouse · Est. MMXXVI</p>
+        <h1 class="hero__title" id="heroTitle"><span class="line">Heat. Cold.</span><span class="line"><em>Steam. Rest.</em></span></h1>
+        <p class="hero__sub" data-hero>Four rooms, one ritual, ninety minutes. Leave your phone at the door and your week in the plunge pool.</p>
+        <div class="hero__ctas" data-hero>
+          <a class="btn btn--clay" href="#visit" data-magnetic>Book a session</a>
+          <a class="hero__link mono" href="#ritual">Begin the ritual →</a>
+        </div>
+      </div>
+      <div class="hero__temps mono" data-hero aria-hidden="true">
+        <span><b>85°</b> Sauna</span><span><b>8°</b> Plunge</span><span><b>45°</b> Steam</span>
+      </div>
+      <div class="hero__scroll mono" data-hero><span>Scroll</span><i></i></div>
+    </section>
+
+    <!-- INTRO LINE -->
+    <section class="intro">
+      <p class="intro__line" data-words>The body knows what the city makes it forget. We just built the rooms.</p>
+    </section>
+
+    <!-- THE RITUAL (pinned) -->
+    <section class="ritual" id="ritual">
+      <div class="ritual__pin" id="ritualPin">
+        <div class="ritual__steps">
+          <p class="mono ritual__label" data-scramble>The ritual — 90 min</p>
+          <ol id="stepList">
+            <li class="step is-on" data-step="0"><span class="step__num mono">01</span><span class="step__name">Heat</span><span class="step__temp mono">20 min</span><i class="step__bar"></i></li>
+            <li class="step" data-step="1"><span class="step__num mono">02</span><span class="step__name">Cold</span><span class="step__temp mono">90 sec</span><i class="step__bar"></i></li>
+            <li class="step" data-step="2"><span class="step__num mono">03</span><span class="step__name">Steam</span><span class="step__temp mono">15 min</span><i class="step__bar"></i></li>
+            <li class="step" data-step="3"><span class="step__num mono">04</span><span class="step__name">Rest</span><span class="step__temp mono">as long as it takes</span><i class="step__bar"></i></li>
+          </ol>
+        </div>
+        <div class="ritual__stage">
+          <figure class="rimg is-on" data-img="0"><img src="https://images.unsplash.com/photo-1728404259075-209cfb5bb89c?q=80&w=1400&auto=format&fit=crop" alt="Cedar sauna interior with wood stove and forest window" /></figure>
+          <figure class="rimg" data-img="1"><img src="https://images.unsplash.com/photo-1612194881610-85422ec3eab9?q=80&w=1400&auto=format&fit=crop" alt="Cold plunge pool ringed with snow" /></figure>
+          <figure class="rimg" data-img="2"><img src="https://images.unsplash.com/photo-1583417657209-d3dd44dc9c09?q=80&w=1400&auto=format&fit=crop" alt="Stone and warm wood steam room" /></figure>
+          <figure class="rimg" data-img="3"><img src="https://images.unsplash.com/photo-1596748176765-08b3a6c9969a?q=80&w=1400&auto=format&fit=crop" alt="Rolled towels on a warm wooden bench" /></figure>
+          <div class="ritual__temp" aria-hidden="true"><span id="tempNum">85</span><sup>°C</sup></div>
+          <div class="ritual__caption">
+            <p class="rcap is-on" data-cap="0">Twenty minutes of cedar heat. The talking stops around minute six.</p>
+            <p class="rcap" data-cap="1">Ninety seconds in the plunge. The longest short time you'll ever count.</p>
+            <p class="rcap" data-cap="2">Eucalyptus steam, zero visibility, total anonymity.</p>
+            <p class="rcap" data-cap="3">Warm stone benches, cold tea, no clocks anywhere on the floor.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- MATERIALS -->
+    <section class="materials">
+      <p class="chapter__num mono" data-scramble>The rooms</p>
+      <h2 data-split><span class="line">Built from things</span><span class="line"><em>that hold heat.</em></span></h2>
+      <div class="materials__grid">
+        <figure class="mat" data-clip>
+          <img src="https://images.unsplash.com/photo-1550053808-52a75a05955d?q=80&w=1200&auto=format&fit=crop" alt="Dark basalt stone texture" loading="lazy" />
+          <figcaption><span class="mono">Basalt</span><p>Quarried, split, stacked warm.</p></figcaption>
+        </figure>
+        <figure class="mat" data-clip>
+          <img src="https://images.unsplash.com/photo-1533162507191-d90c625b2640?q=80&w=1200&auto=format&fit=crop" alt="Smooth stacked river pebbles" loading="lazy" />
+          <figcaption><span class="mono">River stone</span><p>Underfoot from door to plunge.</p></figcaption>
+        </figure>
+        <figure class="mat" data-clip>
+          <img src="https://images.unsplash.com/photo-1619976553860-b7ffbe9a093b?q=80&w=1200&auto=format&fit=crop" alt="Warm cedar wood grain" loading="lazy" />
+          <figcaption><span class="mono">Cedar &amp; clay</span><p>The smell you'll take home.</p></figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <!-- BATHING MENU (hover shows floating preview) -->
+    <section class="menu" id="menu">
+      <p class="chapter__num mono" data-scramble>Bathing menu</p>
+      <h2 data-split><span class="line">Choose your</span><span class="line"><em>ninety minutes.</em></span></h2>
+      <ul class="menu__list">
+        <li class="mitem" data-reveal data-preview="https://images.unsplash.com/photo-1728404259075-209cfb5bb89c?q=80&w=700&auto=format&fit=crop" data-cursor="Book"><span class="mitem__n mono">01</span><div><h3>The Ritual</h3><p>Full circuit, self-guided. Heat, cold, steam, rest.</p></div><span class="mitem__price mono">$48</span></li>
+        <li class="mitem" data-reveal data-preview="https://images.unsplash.com/photo-1583417657209-d3dd44dc9c09?q=80&w=700&auto=format&fit=crop" data-cursor="Book"><span class="mitem__n mono">02</span><div><h3>Aufguss Hour</h3><p>Guided heat rounds with towel work and essential oils. Loud, then very quiet.</p></div><span class="mitem__price mono">$64</span></li>
+        <li class="mitem" data-reveal data-preview="https://images.unsplash.com/photo-1612194881610-85422ec3eab9?q=80&w=700&auto=format&fit=crop" data-cursor="Book"><span class="mitem__n mono">03</span><div><h3>First Light</h3><p>6–8am circuit with hot tea and no music. Members' favourite.</p></div><span class="mitem__price mono">$38</span></li>
+        <li class="mitem" data-reveal data-preview="https://images.unsplash.com/photo-1596748176765-08b3a6c9969a?q=80&w=700&auto=format&fit=crop" data-cursor="Book"><span class="mitem__n mono">04</span><div><h3>The Long Rest</h3><p>The ritual plus an hour in the rest hall. Bring a book, lose the plot.</p></div><span class="mitem__price mono">$72</span></li>
+      </ul>
+      <p class="menu__note mono" data-reveal>Towels, sandals &amp; tea included · Swimwear required · 16+</p>
+    </section>
+    <div class="preview" id="preview" aria-hidden="true"><img alt="" /></div>
+
+    <!-- VISIT -->
+    <section class="visit" id="visit">
+      <div class="visit__grid">
+        <div>
+          <p class="chapter__num mono" data-scramble>Visit</p>
+          <h2 data-split><span class="line">Come in</span><span class="line"><em>cold.</em></span></h2>
+          <p data-reveal>Sessions run every two hours from six in the morning. Book ahead — the rest hall has twelve beds and we don't add a thirteenth.</p>
+          <a class="btn btn--clay" href="#" data-book data-magnetic>Request a booking</a>
+        </div>
+        <div class="visit__info mono" data-reveal>
+          <p>Mon–Fri · 06:00 — 23:00<br />Sat–Sun · 07:00 — 24:00</p>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <div class="footer__word" id="footWord">C<em>&amp;</em>S</div>
+      <div class="footer__cols mono">
+        <span>Cinder &amp; Stone Bathhouse</span>
+        <span>© MMXXVI · All rights reserved</span>
+      </div>
+      <p class="footer__credit mono">Designed &amp; built by <a href="https://kookyweb.vercel.app" target="_blank" rel="noopener">kookyweb</a></p>
+    </footer>
+  </main>
+
+  <div class="toast mono" id="toast">Request received — we'll confirm your session shortly ✓</div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.18/dist/lenis.min.js"></script>
+  <script src="fx.js"></script>
+  <script src="main.js"></script>
+  <script type="module" src="webgl.js"></script>
+</body>
+</html>
