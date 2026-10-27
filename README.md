@@ -1,5 +1,7 @@
 # CINDER & STONE — Urban Bathhouse
 
+**Live:** https://cindorandstone.vercel.app
+
 Website designed & built by [kookyweb](https://kookyweb.vercel.app) — bathhouse with a **real-time 3D cairn**.
 
 **Wow moments**
@@ -10,3 +12,16 @@ Website designed & built by [kookyweb](https://kookyweb.vercel.app) — bathhous
 - Bathing menu rows fill on hover while a photo preview trails the cursor
 
 Static site, no build step — deploy on Vercel with preset **Other**. GSAP + ScrollTrigger + Lenis + Three.js 0.160 via CDN. Photos via Unsplash.
+
+## Built with Claude
+
+I made this site with [Claude](https://claude.ai) by Anthropic as my coding partner. I described the brand, the look and the animations I wanted, and Claude helped write and refine the code while I directed the design and reviewed every step.
+
+## Run locally
+
+No build step. Serve the folder with any static server, for example:
+
+```bash
+npx serve .
+```
+
